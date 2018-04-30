@@ -14,10 +14,10 @@ var choice=1;
 menuOptions();
 
 function menuOptions(){
-    r1.question('0) Enter to exit\n1) Enter to create a user\n2) Enter to delete a user.\n3) Enter to print the list of users\n' +
+    r1.question('0) Enter to exit\n1) Enter to create a name\n2) Enter to delete a name.\n3) Enter to print the list of users\n' +
         '4) Enter to create a group\n5) Enter to delete a group\n6) Enter to print the list of groups\n' +
-        '7) Enter to add user to group\n8) Enter to remove user from group\n9) Enter to print all the users in the groups\n' +
-        '10) Enter to update user password and age\n', main);
+        '7) Enter to add name to group\n8) Enter to remove name from group\n9) Enter to print all the users in the groups\n' +
+        '10) Enter to update name password and age\n', main);
     function main(input){
         choice = parseInt(input);
         switch (choice) {
@@ -70,7 +70,7 @@ function updateUserOption() {
             r1.question('input a new password to change it: ', updatePassword);
         }
         else {
-            console.log("the user name doesn't exist!\n");
+            console.log("the name name doesn't exist!\n");
             menuOptions();
         }
     }

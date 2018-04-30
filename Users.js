@@ -41,7 +41,7 @@ Users.prototype.addUser = function(username, password, age) {
     }
     if (flag===0) {
         this.users.push(user);
-        console.log('user created\n');
+        console.log('name created\n');
     }else{
         console.log("The username is already exist!");
     }
@@ -53,7 +53,7 @@ Users.prototype.removeUser = function(username) {
         if (this.users[i].getUsername() === username){
             flag=1;
             this.users.splice(i, 1);
-            console.log('the user removed\n');
+            console.log('the name removed\n');
             break;
         }
     }

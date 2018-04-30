@@ -33,7 +33,7 @@ Groups.prototype.removeUserFromGroup = function(username,groupName) {
         for (var i = 0; i < this.groups.length; i++) {
             if (this.groups[i].getGroupName() === groupName) {
                 if (this.groups[i].removeUser(username)) {
-                    console.log('the user removed from the group\n');
+                    console.log('the name removed from the group\n');
                 } else {
                     console.log("The username doesn't exist in this group!!");
                 }
@@ -43,7 +43,7 @@ Groups.prototype.removeUserFromGroup = function(username,groupName) {
     }else{
         for (var i = 0; i < this.groups.length; i++) {
             if (this.groups[i].removeUser(username)) {
-                console.log('the user removed from the group\n');
+                console.log('the name removed from the group\n');
             }
         }
     }
