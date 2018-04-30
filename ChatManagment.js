@@ -180,6 +180,7 @@ function deleteUser() {
     function usernameToDelete(input) {
         username = input;
         users.removeUser(username);
+        groups.removeUserFromGroup(username,'allGroups');
         menuOptions();
 
     }

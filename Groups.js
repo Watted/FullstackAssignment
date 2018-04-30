@@ -29,14 +29,22 @@ Groups.prototype.addUserToGroup = function(username,age,groupName) {
     }
 };
 Groups.prototype.removeUserFromGroup = function(username,groupName) {
-    for (var i = 0; i < this.groups.length; i++) {
-        if (this.groups[i].getGroupName() === groupName) {
-            if(this.groups[i].removeUser(username)){
-                console.log('the user removed from the group\n');
-            }else{
-                console.log("The username doesn't exist in this group!!");
+    if (groupName!=='allGroups') {
+        for (var i = 0; i < this.groups.length; i++) {
+            if (this.groups[i].getGroupName() === groupName) {
+                if (this.groups[i].removeUser(username)) {
+                    console.log('the user removed from the group\n');
+                } else {
+                    console.log("The username doesn't exist in this group!!");
+                }
+                break;
             }
-            break;
+        }
+    }else{
+        for (var i = 0; i < this.groups.length; i++) {
+            if (this.groups[i].removeUser(username)) {
+                console.log('the user removed from the group\n');
+            }
         }
     }
 };
