@@ -8,11 +8,9 @@ const User = require('./User');
 const Users = require('./Users');
 const Group = require('./Group');
 const Groups = require('./Groups');
-const UserToGroups = require('./UserToGroups');
-
 let users = new Users();
 let groups = new Groups();
-let userToGroups = new UserToGroups();
+
 var choice=1;
 
 menuOptions();
@@ -21,7 +19,7 @@ function menuOptions(){
     r1.question('0) Enter to exit\n1) Enter to create a user\n2) Enter to delete a user.\n3) Enter to print the list of users\n' +
         '4) Enter to create a group\n5) Enter to delete a group\n6) Enter to print the list of groups\n' +
         '7) Enter to add user to group\n8) Enter to remove user from group\n9) Enter to print all the users in the groups\n' +
-        '10) Enter to update user password and age\n', main)
+        '10) Enter to update user password and age\n', main);
     function main(input){
         choice = parseInt(input);
         switch (choice) {
@@ -90,20 +88,9 @@ function updateUserOption() {
 
 }
 function printGroupUsers() {
-    var user = [];
-    var nameGroup;
     var length = groups.getLength();
-    if (length !=0) {
-        for (var i = 0; i < length; i++) {
-            nameGroup = groups.getName(i);
-            user = userToGroups.printGroupAndUsers(nameGroup);
-            console.log(nameGroup);
-            for (var j = 0; j < user.length; j++) {
-                if (users.checkIfExist(user[j])) {
-                    console.log("\t" + '' + user[j] + ' (' + users.getUserAge(user[j]) + ')');
-                }
-            }
-        }
+    if (length !== 0) {
+        groups.printGroupAndUsers();
     }else{
         console.log("There were no existing groups\n");
     }
@@ -126,7 +113,7 @@ function removeUserFromGroup() {
     function groupName(input) {
         nameOfGroup = input;
         if (groups.checkIfExist(nameOfGroup)) {
-            userToGroups.removeUserFromGroup(username, nameOfGroup);
+            groups.removeUserFromGroup(username, nameOfGroup);
         }else {
             console.log("there was no group name like: "+ nameOfGroup);
             console.log('please try again\n');
@@ -151,7 +138,7 @@ function addUserToGroup() {
     function addGroupName(input) {
         nameOfGroup = input;
         if (groups.checkIfExist(nameOfGroup)) {
-            userToGroups.addUserToGroup(username, nameOfGroup);
+            groups.addUserToGroup(username, nameOfGroup);
         }else{
             console.log("there was no group name like: "+ nameOfGroup);
             console.log('please try again\n');

@@ -1,8 +1,46 @@
 const group = require('./Group');
-const userToGroup = require('./UserToGroup');
 function Groups() {
     this.groups = [];
 }
+Groups.prototype.printGroupAndUsers = function(){
+    for (var i = 0; i< this.groups.length; i++){
+       console.log(this.groups[i].getGroupName());
+       this.groups[i].printAllUsers();
+    }
+};
+
+Groups.prototype.addUserToGroup = function(username,groupName) {
+    for (var i = 0; i < this.groups.length; i++) {
+        if (this.groups[i].getGroupName() === groupName) {
+            if (this.groups[i].checkIfExist(username)){
+                console.log("The username is already exist in the same group!");
+            }else{
+                this.groups[i].setUsersOfGroup(username);
+                console.log('The username added to the group\n');
+            }
+            break;
+        }
+    }
+};
+Groups.prototype.removeUserFromGroup = function(username,groupName) {
+    for (var i = 0; i < this.groups.length; i++) {
+        if (this.groups[i].getGroupName() === groupName) {
+            if(this.groups[i].removeUser(username)){
+                console.log('the user removed from the group\n');
+            }else{
+                console.log("The username doesn't exist in this group!!");
+            }
+            break;
+        }
+    }
+};
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////
 Groups.prototype.checkIfExist = function(name) {
     for (var i = 0; i < this.groups.length;i++){
         if (this.groups[i].getGroupName()===name){
