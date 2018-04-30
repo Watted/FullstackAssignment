@@ -1,4 +1,4 @@
-const user = require('./User');
+const User = require('./User');
 function Users() {
     this.users = [];
 }
@@ -31,7 +31,8 @@ Users.prototype.getUserAge = function(user) {
         }
     }
 };
-Users.prototype.addUser = function(user) {
+Users.prototype.addUser = function(username, password, age) {
+    var user = new User(username, password, age);
     var flag=0;
     for (var i = 0 ; i< this.users.length;i++){
         if (this.users[i].getUsername() === user.getUsername()){

@@ -4,9 +4,7 @@ const r1 = readline.createInterface({
     output: process.stdout
 });
 //direction to User.js
-const User = require('./User');
 const Users = require('./Users');
-const Group = require('./Group');
 const Groups = require('./Groups');
 let users = new Users();
 let groups = new Groups();
@@ -83,6 +81,7 @@ function updateUserOption() {
     function updateAge(input) {
         age = input;
         users.updateUser(username,password,age);
+        groups.updateAge(username,age);
         menuOptions();
     }
 
@@ -138,7 +137,7 @@ function addUserToGroup() {
     function addGroupName(input) {
         nameOfGroup = input;
         if (groups.checkIfExist(nameOfGroup)) {
-            groups.addUserToGroup(username, nameOfGroup);
+            groups.addUserToGroup(username, users.getUserAge(username),nameOfGroup);
         }else{
             console.log("there was no group name like: "+ nameOfGroup);
             console.log('please try again\n');
@@ -170,8 +169,7 @@ function createGroup() {
 
     function addGroupName(input) {
         nameOfGroup = input;
-        var group = new Group(nameOfGroup);
-        groups.addGroup(group);
+        groups.addGroup(nameOfGroup);
         menuOptions();
     }
 }
@@ -207,8 +205,7 @@ function createUser() {
 
     function lastThing(input) {
         age = input;
-        var user = new User(username, password, age);
-        users.addUser(user);
+        users.addUser(username, password, age);
         menuOptions();
     }
 

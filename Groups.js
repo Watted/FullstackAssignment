@@ -1,4 +1,4 @@
-const group = require('./Group');
+const Group = require('./Group');
 function Groups() {
     this.groups = [];
 }
@@ -9,13 +9,19 @@ Groups.prototype.printGroupAndUsers = function(){
     }
 };
 
-Groups.prototype.addUserToGroup = function(username,groupName) {
+Groups.prototype.updateAge = function(username,age){
+    for (var i = 0; i < this.groups.length; i++) {
+        this.groups[i].updateAge(username,age);
+    }
+};
+
+Groups.prototype.addUserToGroup = function(username,age,groupName) {
     for (var i = 0; i < this.groups.length; i++) {
         if (this.groups[i].getGroupName() === groupName) {
             if (this.groups[i].checkIfExist(username)){
                 console.log("The username is already exist in the same group!");
             }else{
-                this.groups[i].setUsersOfGroup(username);
+                this.groups[i].setUsersOfGroup(username,age);
                 console.log('The username added to the group\n');
             }
             break;
@@ -54,7 +60,8 @@ Groups.prototype.getName = function(i) {
 Groups.prototype.getLength = function(group) {
     return this.groups.length;
 };
-Groups.prototype.addGroup = function(group) {
+Groups.prototype.addGroup = function(nameOfGroup) {
+    var group = new Group(nameOfGroup);
     var flag=0;
     for (var i = 0 ; i< this.groups.length;i++){
         if (this.groups[i].getGroupName() === group.getGroupName()){
