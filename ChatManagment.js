@@ -73,6 +73,10 @@ function updateUserOption() {
         if (users.checkIfExist(username)){
             r1.question('input a new password to change it: ', updatePassword);
         }
+        else {
+            console.log("the user name doesn't exist!\n");
+            menuOptions();
+        }
     }
     function updatePassword(input) {
         password = input;
@@ -88,15 +92,20 @@ function updateUserOption() {
 function printGroupUsers() {
     var user = [];
     var nameGroup;
-    for (var i = 0; i< groups.getLength();i++){
-        nameGroup = groups.getName(i);
-        user = userToGroups.printGroupAndUsers(nameGroup);
-        console.log(nameGroup);
-        for (var j =0; j<user.length;j++){
-            if (users.checkIfExist(user[j])) {
-                console.log("\t" + '' + user[j] + ' (' + users.getUserAge(user[j]) + ')');
+    var length = groups.getLength();
+    if (length !=0) {
+        for (var i = 0; i < length; i++) {
+            nameGroup = groups.getName(i);
+            user = userToGroups.printGroupAndUsers(nameGroup);
+            console.log(nameGroup);
+            for (var j = 0; j < user.length; j++) {
+                if (users.checkIfExist(user[j])) {
+                    console.log("\t" + '' + user[j] + ' (' + users.getUserAge(user[j]) + ')');
+                }
             }
         }
+    }else{
+        console.log("There were no existing groups\n");
     }
     menuOptions();
 }
@@ -106,11 +115,22 @@ function removeUserFromGroup() {
     r1.question('input the username to delete: ',removeUser);
     function removeUser(input) {
         username = input;
-        r1.question('input the group name: ', groupName);
+        if (users.checkIfExist(username)) {
+            r1.question('input the group name: ', groupName);
+        }else{
+            console.log("there was no username like: "+username);
+            console.log('please try again\n');
+            menuOptions();
+        }
     }
     function groupName(input) {
         nameOfGroup = input;
-        userToGroups.removeUserFromGroup(username,nameOfGroup);
+        if (groups.checkIfExist(nameOfGroup)) {
+            userToGroups.removeUserFromGroup(username, nameOfGroup);
+        }else {
+            console.log("there was no group name like: "+ nameOfGroup);
+            console.log('please try again\n');
+        }
         menuOptions();
     }
 }
@@ -123,7 +143,7 @@ function addUserToGroup() {
         if (users.checkIfExist(username)) {
             r1.question('input the group name: ', addGroupName);
         }else{
-            console.log("there isn't user name like: "+username);
+            console.log("there was no username like: "+username);
             console.log('please try again\n');
             menuOptions();
         }
@@ -133,7 +153,7 @@ function addUserToGroup() {
         if (groups.checkIfExist(nameOfGroup)) {
             userToGroups.addUserToGroup(username, nameOfGroup);
         }else{
-            console.log("there isn't group name like: "+ nameOfGroup);
+            console.log("there was no group name like: "+ nameOfGroup);
             console.log('please try again\n');
         }
         menuOptions();

@@ -48,8 +48,12 @@ Groups.prototype.removeGroup = function(group) {
 };
 
 Groups.prototype.print = function() {
-    for (var i = 0; i<this.groups.length;i++){
-        console.log(this.groups[i].getGroupName());
+    if (this.groups.length) {
+        for (var i = 0; i < this.groups.length; i++) {
+            console.log(this.groups[i].getGroupName());
+        }
+    }else {
+        console.log("There is no existing group\n");
     }
 };
 

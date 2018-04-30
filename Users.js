@@ -21,6 +21,7 @@ Users.prototype.checkIfExist = function(username) {
             return true;
         }
     }
+    return false;
 };
 Users.prototype.getUserAge = function(user) {
     for (var i =0;i<this.users.length;i++){
@@ -61,8 +62,12 @@ Users.prototype.removeUser = function(username) {
 };
 
 Users.prototype.print = function() {
-    for (var i = 0; i<this.users.length;i++){
-        console.log(this.users[i].getUsername());
+    if (this.users.length) {
+        for (var i = 0; i < this.users.length; i++) {
+            console.log(this.users[i].getUsername());
+        }
+    }else{
+        console.log("There is not users in the list\n");
     }
 };
 
