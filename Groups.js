@@ -42,11 +42,6 @@ Groups.prototype.removeUserFromGroup = function(username,groupName) {
 };
 
 
-
-
-
-
-////////////////////////////////////////////////////////////////
 Groups.prototype.checkIfExist = function(name) {
     for (var i = 0; i < this.groups.length;i++){
         if (this.groups[i].getGroupName()===name){
