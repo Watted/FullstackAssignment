@@ -1,14 +1,12 @@
 function Group(nameOfGroup) {
     this.nameOfGroup = nameOfGroup;
     this.usersOfGroup = [];
-    this.ageOfUsers = [];
 
 }
 Group.prototype.updateAge = function(username,age){
     for (var i = 0; i < this.usersOfGroup.length; i++) {
         if (this.usersOfGroup[i].name===username){
             this.usersOfGroup[i].age = age;
-            //this.ageOfUsers[i] = age;
         }
     }
 };
@@ -31,13 +29,11 @@ Group.prototype.getUser = function (i) {
 Group.prototype.setUsersOfGroup = function(user,age){
     var tmp = {name: user,age};
     this.usersOfGroup.push(tmp);
-    //this.ageOfUsers.push(age);
 };
 Group.prototype.removeUser = function(user){
     for (var i =0 ;i<this.usersOfGroup.length;i++){
         if (this.usersOfGroup[i].name===user) {
             this.usersOfGroup.splice(i, 1);
-            //this.ageOfUsers.splice(i, 1);
             return true;
         }
     }
